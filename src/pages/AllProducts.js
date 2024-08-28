@@ -11,12 +11,12 @@ const AllProducts = () => {
   const [minPrice, setMinPrice] = useState(1);
   const [maxPrice, setMaxPrice] = useState(10000);
 
-  useEffect(() => {
-    const loadProducts = async () => {
-      const result = await fetchProducts(company, category, top, minPrice, maxPrice);
-      setProducts(result);
-    };
+  const loadProducts = async () => {
+    const result = await fetchProducts(company, category, top, minPrice, maxPrice);
+    setProducts(result);
+  };
 
+  useEffect(() => {
     loadProducts();
   }, [company, category, top, minPrice, maxPrice]);
 
@@ -57,7 +57,7 @@ const AllProducts = () => {
           onChange={(e) => setMaxPrice(e.target.value)}
           style={{ marginRight: 16 }}
         />
-        <Button variant="contained" onClick={() => loadProducts()}>Fetch Products</Button>
+        <Button variant="contained" onClick={loadProducts}>Fetch Products</Button>
       </div>
       <ProductList products={products} />
     </Container>
@@ -65,3 +65,4 @@ const AllProducts = () => {
 };
 
 export default AllProducts;
+
